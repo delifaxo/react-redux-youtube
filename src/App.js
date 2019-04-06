@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getVideo } from './actions/video';
 import { getComments } from './actions/comments'
 import RenderPlayer from './components/RenderPlayer'
+import RenderComments from './components/RenderComments'
+import RenderListVideo from './components/RenderListVideo'
 class App extends Component {
 
   searchVideo = async (e) => {
@@ -26,6 +28,8 @@ class App extends Component {
         <input type="text" ref={(input => { this.trackInput = input })} />
         <button onClick={this.searchVideo}>push</button>
         <RenderPlayer />
+        <RenderComments/>
+        <RenderListVideo />
       </div>
     );
   }

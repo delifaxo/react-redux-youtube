@@ -24,25 +24,6 @@ function RPlayer(body) {
     }
 }
 
-function RComments(body) {
-
-    console.log(body.testStore)
-    if (!body.testStore.comments[0] || body.testStore.comments[0].items === undefined) {
-        return <div>...загрузка</div>;
-    }
-    else {
-        return (
-            <div>
-                {body.testStore.comments[0].items.map((items) =>
-                    <div>
-                        {items.snippet.topLevelComment.snippet.textOriginal}
-                    </div>
-                )}
-            </div>
-        );
-    }
-}
-
 
 
 //<div className="loader"></div>32434
@@ -62,7 +43,6 @@ class RenderPlayer extends Component {
         return (
             <div>
                 <RPlayer testStore={this.props.testStore} />
-                <RComments testStore={this.props.testStore} />
             </div>
         )
     }
