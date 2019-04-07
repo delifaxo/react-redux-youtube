@@ -11,9 +11,10 @@ function RComments(body) {
         return (
             <div>
                 {body.testStore.comments[0].items.map((items) =>
-                    <div>
-                        {items.snippet.topLevelComment.snippet.textOriginal}
-                    </div>
+                    <div className="comments-item-list text-comments card bg-light mb-3">
+                    <div>Автор {items.snippet.topLevelComment.snippet.authorDisplayName} 
+                    комментарий {items.snippet.topLevelComment.snippet.textOriginal}
+                    </div></div>
                 )}
             </div>
         );

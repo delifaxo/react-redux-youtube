@@ -1,36 +1,59 @@
 .App {
+  overflow: hidden;
+}
+.player {
+  text-align: center;
+}
+.ytplayer {
+    width: 60%;
+    min-height: 180px;
+    height: 380px;
+}
+.video {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.text-side-bar {
+  text-align: center;
+}
+.video-side-img {
+  min-width: 25px;
+  width: 125px;
+  float: left;
+  min-height: 40px;
+  height: auto;
+  margin: 0px;
+  border-radius: 5px 5px 5px 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card {
+  overflow: hidden;
+  margin: 10px;
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.comments {
+  text-align: left;
+}
+.notcomments {
+  text-align: center;
+}
+.btnrigth {
+  float:right
+}
+.btnleft {
+  float:left
+}
+.cont-player{
+padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
+
+
+
+
 
 
 

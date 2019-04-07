@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 
 
-function RPlayer(body) {
-    console.log(body.testStore)
-    if (!body.testStore.video[0]) {
+function RPlayer(currentVideo) {
+console.log('баги-2 ',currentVideo.currentVideo)
+    if (currentVideo.currentVideo === "test") {
         return <div>Начните поиск</div>;
     }
     else {
@@ -17,7 +17,7 @@ function RPlayer(body) {
                     msallowfullscreen="msallowfullscreen"
                     oallowfullscreen="oallowfullscreen"
                     webkitallowfullscreen="webkitallowfullscreen"
-                    src={`//www.youtube.com/embed/${body.testStore.video[0].items[0].id.videoId}`}>
+                    src={`//www.youtube.com/embed/${currentVideo.currentVideo}`}>
                 </iframe>
             </div>
         );
@@ -37,12 +37,13 @@ class RenderPlayer extends Component {
     }
 
     render() {
-        console.log("player", this.props)
+        
+        console.log("player", this.props.currentVideo)
         console.log(this.props.testStore.video[1]);
 
         return (
             <div>
-                <RPlayer testStore={this.props.testStore} />
+                <RPlayer currentVideo={this.props.currentVideo} />
             </div>
         )
     }
