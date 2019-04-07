@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 function RComments(body) {
-
-    console.log(body.testStore)
     if (!body.testStore.comments[0] || body.testStore.comments[0].items === undefined) {
         return <div>...загрузка</div>;
     }
@@ -20,8 +18,6 @@ function RComments(body) {
         );
     }
 }
-
-
 
 //<div className="loader"></div>32434
 //<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -41,8 +37,6 @@ class RenderPlayer extends Component {
         )
     }
 }
-
- 
 
 export default connect(
     state => ({

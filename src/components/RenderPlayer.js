@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 
-
-
 function RPlayer(currentVideo) {
-console.log('баги-2 ',currentVideo.currentVideo)
     if (currentVideo.currentVideo === "test") {
         return <div>Начните поиск</div>;
     }
@@ -24,10 +21,6 @@ console.log('баги-2 ',currentVideo.currentVideo)
     }
 }
 
-
-
-//<div className="loader"></div>32434
-//<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 class RenderPlayer extends Component {
     constructor() {
         super();
@@ -35,12 +28,7 @@ class RenderPlayer extends Component {
             loading: true
         };
     }
-
     render() {
-        
-        console.log("player", this.props.currentVideo)
-        console.log(this.props.testStore.video[1]);
-
         return (
             <div>
                 <RPlayer currentVideo={this.props.currentVideo} />
@@ -48,8 +36,6 @@ class RenderPlayer extends Component {
         )
     }
 }
-
- 
 
 export default connect(
     state => ({
