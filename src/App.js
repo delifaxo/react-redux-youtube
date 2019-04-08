@@ -37,6 +37,7 @@ class App extends Component {
   listVideo = async (e) => {
     if (e.target.getAttribute('name') !== undefined) {
       let test = e.target.getAttribute('name');
+      this.getDataComments(test);
     this.setState(({currentVideo}) => {
       return {
         currentVideo: test
