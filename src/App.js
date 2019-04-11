@@ -21,7 +21,7 @@ class App extends Component {
     this.props.onAddVideo(data);
     console.log('баги', data.items[0].id.videoId)
     //коменты
-    this.getDataComments(data.items[0].id.videoId)
+    this.getDataComments(data.items[0].id.videoId)  
     this.setState(({currentVideo}) => {
       return {
         currentVideo: data.items[0].id.videoId
@@ -80,14 +80,17 @@ class App extends Component {
   }
 }
 
-export default connect(
-  state => ({ testStore: state }),
-  dispatch => ({
-    onAddVideo: (state) => {
+const mapStateToProps = (state) => ({
+  testStore: state.testStore
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  onAddVideo: (state) => {
       dispatch({ type: 'ADD_VIDEO', payload: state })
     },
     onAddComments: (state) => {
       dispatch({ type: 'ADD_COMMENTS', payload: state })
     }
-  })
-)(App)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

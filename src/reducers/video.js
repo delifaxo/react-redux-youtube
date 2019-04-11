@@ -1,8 +1,8 @@
 export default function video(state = [], action) {
-    if (action.type  === 'ADD_VIDEO') {
-        return [
-            action.payload
-        ]
+    switch (action.type) {
+        case 'ADD_VIDEO':
+        return [action.payload]
+        default:
+        return state
     }
-    return state;
 }

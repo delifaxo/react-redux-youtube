@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class search extends Component {
+export default class Search extends Component {
   render() {
     return (
       <nav className="navbar navbar-light bg-light">
@@ -12,5 +12,5 @@ export default class search extends Component {
         </form>
       </nav>
     )
-  }
+  } 
 }
