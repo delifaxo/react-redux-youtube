@@ -7,6 +7,9 @@ import RenderPlayer from './components/RenderPlayer'
 import RenderComments from './components/RenderComments'
 import RenderListVideo from './components/RenderListVideo'
 import Search from './components/Search'
+
+import { bindActionCreators } from 'redux';
+
 class App extends Component {
   constructor() {
     super();
@@ -19,7 +22,7 @@ class App extends Component {
     e.preventDefault();
     let data = await getVideo(e.target.searchInput.value);
     this.props.onAddVideo(data);
-    console.log('баги', data.items[0].id.videoId)
+    console.log('data.items[0].id.videoId', data.items[0].id.videoId)
     //коменты
     this.getDataComments(data.items[0].id.videoId)  
     this.setState(({currentVideo}) => {
@@ -36,11 +39,11 @@ class App extends Component {
 
   listVideo = async (e) => {
     if (e.target.getAttribute('name') !== undefined) {
-      let test = e.target.getAttribute('name');
-      this.getDataComments(test);
+      let searchText = e.target.getAttribute('name');
+      this.getDataComments(searchText);
     this.setState(({currentVideo}) => {
       return {
-        currentVideo: test
+        currentVideo: searchText
       }
     })
   }
@@ -81,7 +84,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  testStore: state.testStore
+  testStore: state
 })
 
 const mapDispatchToProps = (dispatch) => ({

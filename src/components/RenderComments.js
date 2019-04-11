@@ -2,17 +2,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 function RComments(body) {
-    if (!body.testStore.comments[0] || body.testStore.comments[0].items === undefined) {
-        return <div>...загрузка</div>;
+    if (!body.testStore.comments[0]) {
+        return  []
     }
-    else {
+  else if(body.testStore.comments[0].error) {
+      return (
+          <div className="notcomments">Комментарии закрыты!</div>
+      )
+  }
+    else if (body.testStore.comments[0].items)  {
         return (
             <div>
                 {body.testStore.comments[0].items.map((items) =>
-                    <div className="comments-item-list text-comments card bg-light mb-3">
-                    <div>Автор {items.snippet.topLevelComment.snippet.authorDisplayName} 
-                    комментарий {items.snippet.topLevelComment.snippet.textOriginal}
-                    </div></div>
+                    <div key={items.snippet.topLevelComment.etag} 
+                    className="comments-item-list text-comments card bg-light mb-3">
+                        <div>Автор {items.snippet.topLevelComment.snippet.authorDisplayName}
+                            комментарий {items.snippet.topLevelComment.snippet.textOriginal}
+                        </div></div>
                 )}
             </div>
         );
@@ -31,7 +37,7 @@ class RenderPlayer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="commentsAll">
                 <RComments testStore={this.props.testStore} />
             </div>
         )
@@ -44,4 +50,3 @@ export default connect(
     })
 
 )(RenderPlayer)
- 

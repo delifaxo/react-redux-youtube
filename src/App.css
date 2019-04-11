@@ -47,8 +47,12 @@
 .cont-player{
 padding: 10px;
 }
-
-
+.notcomments {
+  text-align: center;
+}
+.commentsAll {
+  text-align: left;
+}
 
 
 
