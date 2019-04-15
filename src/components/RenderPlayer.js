@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 
 function RPlayer(currentVideo) {
-    if (currentVideo.currentVideo === "test") {
+    if (!currentVideo.currentVideo.currentVideo[0]) {
         return <div>Начните поиск</div>;
     }
     else {
@@ -14,7 +14,7 @@ function RPlayer(currentVideo) {
                     msallowfullscreen="msallowfullscreen"
                     oallowfullscreen="oallowfullscreen"
                     webkitallowfullscreen="webkitallowfullscreen"
-                    src={`//www.youtube.com/embed/${currentVideo.currentVideo}`}>
+                    src={`//www.youtube.com/embed/${currentVideo.currentVideo.currentVideo[0].id.videoId}`}>
                 </iframe>
             </div>
         );
@@ -22,6 +22,7 @@ function RPlayer(currentVideo) {
 }
 
 class RenderPlayer extends Component {
+    
     constructor() {
         super();
         this.state = {
@@ -29,9 +30,10 @@ class RenderPlayer extends Component {
         };
     }
     render() {
+        console.log("STORE-2",this.props.testStore)
         return (
             <div>
-                <RPlayer currentVideo={this.props.currentVideo} />
+                <RPlayer currentVideo={this.props.testStore} />
             </div>
         )
     }

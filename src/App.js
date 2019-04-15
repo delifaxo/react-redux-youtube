@@ -8,46 +8,31 @@ import RenderComments from './components/RenderComments'
 import RenderListVideo from './components/RenderListVideo'
 import Search from './components/Search'
 import getResourse from './services/index'
+import {getCurrentVideo} from './actions/currentVideo'
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentVideo: "test"
-    }
-  }
-
+ 
   searchVideo = async (e) => {
     e.preventDefault();
     var body = await getResourse(`search?part=snippet&maxResults=6&q=${e.target.searchInput.value}&type=video&key=`)
     this.getDataComments(body.items[0].id.videoId)
     this.props.getVideo(body);//action
-
-    this.setState(({ currentVideo }) => {
-      return {
-        currentVideo: body.items[0].id.videoId
-      }
-    })
+    this.props.getCurrentVideo(body.items[0])
   }
 
   getDataComments = async (id) => {
     var body = await getResourse(`commentThreads?part=id%2Csnippet&videoId=${id}&key=`)
     this.props.getComments(body);//action
-
   }
 
   listVideo = async (e) => {
     if (e.target.getAttribute('name') !== undefined) {
+      var body = await getResourse(`videos?part=snippet&id=${e.target.getAttribute('name')}&key=`)
+      this.props.getCurrentVideo(body.items[0].id.videoId)
       let searchText = e.target.getAttribute('name');
       this.getDataComments(searchText);
-      this.setState(({ currentVideo }) => {
-        return {
-          currentVideo: searchText
-        }
-      })
     }
   }
-
 
   render() {
     console.log('STORE', this.props.testStore)
@@ -59,8 +44,7 @@ class App extends Component {
           <div className="content">
             <div className="row">
               <div className="video col-lg-8">
-                <RenderPlayer
-                  currentVideo={this.state.currentVideo} />
+                <RenderPlayer />
                 <div className="comments">
                   <RenderComments />
                 </div>
@@ -93,7 +77,8 @@ const mapDispatchToProps = (dispatch) => ({
 */
 const mapDispatchToProps = {
   getVideo,
-  getComments
+  getComments,
+  getCurrentVideo
 }
 
 
