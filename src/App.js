@@ -17,7 +17,7 @@ class App extends Component {
     var body = await getResourse(`search?part=snippet&maxResults=6&q=${e.target.searchInput.value}&type=video&key=`)
     this.getDataComments(body.items[0].id.videoId)
     this.props.getVideo(body);//action
-    this.props.getCurrentVideo(body.items[0])
+    this.totalVideo(body.items[0].id.videoId);
   }
 
   getDataComments = async (id) => {
@@ -27,11 +27,15 @@ class App extends Component {
 
   listVideo = async (e) => {
     if (e.target.getAttribute('name') !== undefined) {
-      var body = await getResourse(`videos?part=snippet&id=${e.target.getAttribute('name')}&key=`)
-      this.props.getCurrentVideo(body.items[0].id.videoId)
       let searchText = e.target.getAttribute('name');
+      this.totalVideo(searchText);
       this.getDataComments(searchText);
     }
+  }
+
+  totalVideo = async(e) => {
+    var body = await getResourse(`videos?part=snippet&id=${e}&key=`)
+    this.props.getCurrentVideo(body.items[0])
   }
 
   render() {

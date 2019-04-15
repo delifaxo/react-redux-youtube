@@ -14,7 +14,7 @@ function RPlayer(currentVideo) {
                     msallowfullscreen="msallowfullscreen"
                     oallowfullscreen="oallowfullscreen"
                     webkitallowfullscreen="webkitallowfullscreen"
-                    src={`//www.youtube.com/embed/${currentVideo.currentVideo.currentVideo[0].id.videoId}`}>
+                    src={`//www.youtube.com/embed/${currentVideo.currentVideo.currentVideo[0].id}`}>
                 </iframe>
             </div>
         );
