@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 
 function RPlayer(currentVideo) {
     if (!currentVideo.currentVideo.currentVideo[0]) {
-        return <div>Начните поиск</div>;
+        return <div className="RPSearch">Начните поиск</div>;
     }
     else {
         return (
             <div>
                 <div>
-                   Название видео {currentVideo.currentVideo.currentVideo[0].snippet.title}
+                    Название видео {currentVideo.currentVideo.currentVideo[0].snippet.title}
                 </div>
                 <iframe className="ytplayer" allowFullScreen="allowfullScreen"
                     mozallowfullscreen="mozallowfullscreen"
@@ -19,9 +19,7 @@ function RPlayer(currentVideo) {
                     webkitallowfullscreen="webkitallowfullscreen"
                     src={`//www.youtube.com/embed/${currentVideo.currentVideo.currentVideo[0].id}`}>
                 </iframe>
-            <div>
-                Название канала {currentVideo.currentVideo.currentVideo[0].snippet.channelTitle}
-            </div>
+                <div>Название канала {currentVideo.currentVideo.currentVideo[0].snippet.channelTitle}</div>
             </div>
         );
     }
