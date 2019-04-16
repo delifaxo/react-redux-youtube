@@ -55,7 +55,7 @@ padding: 10px;
 }
 .RPSearch {
   position: fixed;
-  left: 50%;
+  left: 48%;
   transform: translateX(-50%);
 }
 
