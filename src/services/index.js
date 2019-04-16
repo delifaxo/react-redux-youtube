@@ -9,4 +9,29 @@ async function getResourse(id) {
   let body = await res.json();
   return body;
 }
+export async function getApiComments(id) {
+let data = await getResourse(`commentThreads?part=id%2Csnippet&videoId=${id}&key=`)
+return data
+}
+export async function getApiListVideo(search) {
+  let body = await getResourse(`search?part=snippet&maxResults=6&q=${search}&type=video&key=`)
+  return body
+  }
+  
+  export async function getApiVideo(id) {
+    let body = await getResourse(`videos?part=snippet&id=${id}&key=`)
+    return body
+    }
+    
+      
+
+
+
+
+
+
+
+
+
+
 export default getResourse;

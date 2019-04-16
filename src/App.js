@@ -7,21 +7,21 @@ import RenderPlayer from './components/RenderPlayer'
 import RenderComments from './components/RenderComments'
 import RenderListVideo from './components/RenderListVideo'
 import Search from './components/Search'
-import getResourse from './services/index'
+import {getApiComments,getApiListVideo,getApiVideo} from './services/index'
 import {getCurrentVideo} from './actions/currentVideo'
 
 class App extends Component {
  
   searchVideo = async (e) => {
     e.preventDefault();
-    var body = await getResourse(`search?part=snippet&maxResults=6&q=${e.target.searchInput.value}&type=video&key=`)
+    var body = await getApiListVideo(e.target.searchInput.value);
     this.getDataComments(body.items[0].id.videoId)
     this.props.getVideo(body);//action
     this.totalVideo(body.items[0].id.videoId);
   }
 
   getDataComments = async (id) => {
-    var body = await getResourse(`commentThreads?part=id%2Csnippet&videoId=${id}&key=`)
+    var body = await getApiComments(id);
     this.props.getComments(body);//action
   }
 
@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   totalVideo = async(id) => {
-    var body = await getResourse(`videos?part=snippet&id=${id}&key=`)
+    var body = await getApiVideo(id);
     this.props.getCurrentVideo(body.items[0])
   }
 
