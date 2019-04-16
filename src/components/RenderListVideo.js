@@ -19,7 +19,7 @@ class RenderListVideo extends Component {
                   <img className="video-side-img"
                     name={`${id.videoId}`} src={`https://i.ytimg.com/vi/${id.videoId}/mqdefault.jpg`}></img>
                   <div name={`${id.videoId}`} className="text-side-bar">
-               {snippet.title}
+                  <p dangerouslySetInnerHTML={{ __html: `${snippet.title}`}}></p>
               </div>
                 </div>
               </div>
