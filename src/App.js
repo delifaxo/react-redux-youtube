@@ -38,7 +38,7 @@ class App extends Component {
     this.props.getCurrentVideo(body.items[0])
   }
 
-  render() {
+  render() {  
     console.log('STORE', this.props.testStore)
     return (
       <div className="App">

@@ -9,6 +9,9 @@ function RPlayer(currentVideo) {
     else {
         return (
             <div>
+                <div>
+                   Название видео {currentVideo.currentVideo.currentVideo[0].snippet.title}
+                </div>
                 <iframe className="ytplayer" allowFullScreen="allowfullScreen"
                     mozallowfullscreen="mozallowfullscreen"
                     msallowfullscreen="msallowfullscreen"
@@ -16,13 +19,16 @@ function RPlayer(currentVideo) {
                     webkitallowfullscreen="webkitallowfullscreen"
                     src={`//www.youtube.com/embed/${currentVideo.currentVideo.currentVideo[0].id}`}>
                 </iframe>
+            <div>
+                Название канала {currentVideo.currentVideo.currentVideo[0].snippet.channelTitle}
+            </div>
             </div>
         );
     }
 }
 
 class RenderPlayer extends Component {
-    
+
     constructor() {
         super();
         this.state = {
@@ -30,7 +36,7 @@ class RenderPlayer extends Component {
         };
     }
     render() {
-        console.log("STORE-2",this.props.testStore)
+        console.log("STORE-2", this.props.testStore)
         return (
             <div>
                 <RPlayer currentVideo={this.props.testStore} />
@@ -45,4 +51,3 @@ export default connect(
     })
 
 )(RenderPlayer)
- 
