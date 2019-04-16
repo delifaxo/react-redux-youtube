@@ -26,13 +26,6 @@ function RPlayer(currentVideo) {
 }
 
 class RenderPlayer extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            loading: true
-        };
-    }
     render() {
         console.log("STORE-2", this.props.testStore)
         return (

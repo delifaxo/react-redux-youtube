@@ -14,9 +14,9 @@ function RComments(body) {
         return (
             <div>
                 {body.testStore.comments[0].items.map((items) =>
-                    <div key={items.snippet.topLevelComment.etag} 
+                    <div key={items.snippet.topLevelComment.etag}   
                     className="comments-item-list text-comments card bg-light mb-3">
-                        <div>Автор {items.snippet.topLevelComment.snippet.authorDisplayName}
+                        <div>Автор {items.snippet.topLevelComment.snippet.authorDisplayName}{` `}
                             комментарий {items.snippet.topLevelComment.snippet.textOriginal}
                         </div></div>
                 )}
@@ -28,12 +28,6 @@ function RComments(body) {
 //<div className="loader"></div>32434
 //<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 class RenderPlayer extends Component {
-    constructor() {
-        super();
-        this.state = {
-            loading: true
-        };
-    }
 
     render() {
         return (
