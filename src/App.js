@@ -33,8 +33,8 @@ class App extends Component {
     }
   }
 
-  totalVideo = async(e) => {
-    var body = await getResourse(`videos?part=snippet&id=${e}&key=`)
+  totalVideo = async(id) => {
+    var body = await getResourse(`videos?part=snippet&id=${id}&key=`)
     this.props.getCurrentVideo(body.items[0])
   }
 
