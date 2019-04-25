@@ -7,8 +7,9 @@ import RenderPlayer from './components/RenderPlayer'
 import RenderComments from './components/RenderComments'
 import RenderListVideo from './components/RenderListVideo'
 import Search from './components/Search'
-import {getApiComments,getApiListVideo,getApiVideo} from './services/index'
+import {getApiComments,getApiListVideo,getApiVideo,getApiStatistics} from './services/index'
 import {getCurrentVideo} from './actions/currentVideo'
+import {getStatistics} from './actions/statistics'
 
 class App extends Component {
  
@@ -36,6 +37,8 @@ class App extends Component {
   totalVideo = async(id) => {
     var body = await getApiVideo(id);
     this.props.getCurrentVideo(body.items[0])
+    let sbode = await getApiStatistics(id);
+    this.props.getStatistics(sbode.items[0])
   }
 
   render() {  
@@ -82,7 +85,8 @@ const mapDispatchToProps = (dispatch) => ({
 const mapDispatchToProps = {
   getVideo,
   getComments,
-  getCurrentVideo
+  getCurrentVideo,
+  getStatistics
 }
 
 

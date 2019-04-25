@@ -1,6 +1,6 @@
-export default function video(state = [], action,isFetching) {
+export default function statistics(state = [], action,isFetching) {
     switch (action.type) {
-        case 'ADD_VIDEO':
+        case 'ADD_STATISTICS':
         return [action.payload, isFetching=true]
         default:
         return state

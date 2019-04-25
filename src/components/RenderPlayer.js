@@ -25,12 +25,32 @@ function RPlayer(currentVideo) {
     }
 }
 
+function Rstatistics(body) {
+    console.log(`body`)
+
+    console.log(body)
+    if (!body.body.statistics[0]) {
+        return []
+    }
+    else {
+        return (
+            <div>
+                лайков -{ } {body.body.statistics[0].statistics.likeCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1.')}
+                <br></br>
+                дизлайков -{ }
+                {body.body.statistics[0].statistics.dislikeCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1.')}<br/>
+                просмотров - { }
+                {body.body.statistics[0].statistics.viewCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1.')}
+            </div>)
+    }
+}
 class RenderPlayer extends Component {
     render() {
         console.log("STORE-2", this.props.testStore)
         return (
             <div>
                 <RPlayer currentVideo={this.props.testStore} />
+                <Rstatistics body={this.props.testStore} />
             </div>
         )
     }
