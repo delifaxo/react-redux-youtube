@@ -7,41 +7,36 @@ import RenderPlayer from './components/RenderPlayer'
 import RenderComments from './components/RenderComments'
 import RenderListVideo from './components/RenderListVideo'
 import Search from './components/Search'
-import {getApiComments,getApiListVideo,getApiVideo,getApiStatistics} from './services/index'
-import {getCurrentVideo} from './actions/currentVideo'
-import {getStatistics} from './actions/statistics'
+import { getApiComments, getApiListVideo, getApiVideo, getApiStatistics } from './services/index'
+import { getCurrentVideo } from './actions/currentVideo'
+import { getStatistics } from './actions/statistics'
 
 class App extends Component {
- 
+
   searchVideo = async (e) => {
     e.preventDefault();
-    var body = await getApiListVideo(e.target.searchInput.value);
-    this.getDataComments(body.items[0].id.videoId)
+    let body = await getApiListVideo(e.target.searchInput.value);
     this.props.getVideo(body);//action
     this.totalVideo(body.items[0].id.videoId);
-  }
-
-  getDataComments = async (id) => {
-    var body = await getApiComments(id);
-    this.props.getComments(body);//action
   }
 
   listVideo = async (e) => {
     if (e.target.getAttribute('name') !== undefined) {
       let searchText = e.target.getAttribute('name');
       this.totalVideo(searchText);
-      this.getDataComments(searchText);
     }
   }
 
-  totalVideo = async(id) => {
-    var body = await getApiVideo(id);
-    this.props.getCurrentVideo(body.items[0])
-    let sbode = await getApiStatistics(id);
-    this.props.getStatistics(sbode.items[0])
+  totalVideo = async (id) => {
+    let a1 = await getApiVideo(id);
+    this.props.getCurrentVideo(a1.items[0])
+    let a2 = await getApiStatistics(id);
+    this.props.getStatistics(a2.items[0])
+    let a3 = await getApiComments(id);
+    this.props.getComments(a3);//action
   }
 
-  render() {  
+  render() {
     console.log('STORE', this.props.testStore)
     return (
       <div className="App">
