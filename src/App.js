@@ -60,8 +60,9 @@ class App extends Component {
   loadingComments = async () => {
     let body = await getApiCommentsNext(this.props.testStore.comments[0].nextPageToken,
       this.props.testStore.currentVideo[0].id);
-      (!body.error.code) ? (this.props.loadComments(body)) : console.log("error comments")
-    }
+    (body.items) ?  this.props.loadComments(body) :  console.log('dont work load comments')
+
+  }
 
 
   render() {
