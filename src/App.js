@@ -47,6 +47,7 @@ class App extends Component {
         this.props.getVideo(data);
       }
     }
+    
     else if ((e.target.getAttribute('name') === "nextPageToken") && e.target.getAttribute('name') !== undefined) {
       let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
         this.props.testStore.currentRequestSearch[0]);
@@ -57,8 +58,8 @@ class App extends Component {
   }
 
   loadingComments = async () => {
-
-    let body = await getApiCommentsNext(this.props.testStore.currentVideo[0].id);
+    let body = await getApiCommentsNext(this.props.testStore.comments[0].nextPageToken,
+      this.props.testStore.currentVideo[0].id);
     this.props.loadComments(body);//action
   }
 

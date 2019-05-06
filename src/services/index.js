@@ -25,16 +25,17 @@ export async function getApiVideo(id) {
   let body = await getResourse(`videos?part=snippet&id=${id}&key=`)
   return body
 }
-// -> не подключенно
+
 export async function getApiselectlistVideo(token,currentSearch) {
   let body = await getResourse(`search?pageToken=${token}&part=snippet&maxResults=6&q=${currentSearch}&type=video&key=`)
   return body
 }
-// -> не подключенно
-export async function getApiCommentsNext(id) {
-  let body = await getResourse(`commentThreads?part=id%2Csnippet&videoId=${id}&key=`)
+
+export async function getApiCommentsNext(token,id) {
+  let body = await getResourse(`commentThreads?pageToken=${token}&part=id%2Csnippet&videoId=${id}&key=`)
   return body
 }
+
 export async function getApiStatistics(id) {
   let body = await getResourse(`videos?part=statistics&id=${id}&key=`)
   return body
