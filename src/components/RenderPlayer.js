@@ -42,12 +42,11 @@ function Rstatistics(body) {
     else {
         return (
             <div>
-                лайков -{} {body.body.statistics[0].statistics.likeCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1.')}
-                <br></br>
-                дизлайков -{}
-                {body.body.statistics[0].statistics.dislikeCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1.')}<br />
-                просмотров - {}
-                {body.body.statistics[0].statistics.viewCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1.')}
+                лайков -{` `}{body.body.statistics[0].statistics.likeCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g,'$1.')}
+                {` `}дизлайков -{` `}
+                {body.body.statistics[0].statistics.dislikeCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g,'$1.')}<br />
+                просмотров - {` `}
+                {body.body.statistics[0].statistics.viewCount.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g,'$1.')}
             </div>
             )
     }

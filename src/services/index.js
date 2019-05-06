@@ -1,4 +1,5 @@
-const Api2_key = "AIzaSyCN8Z0e1u_dSFhNen05muGFYIzh-gsezQU";
+//const Api2_key = "AIzaSyCN8Z0e1u_dSFhNen05muGFYIzh-gsezQU";
+const Api2_key ="AIzaSyBe9qwivOtTfitthysxQY7gqYIp1BDCiuc"
 const Url_youtube = "https://www.googleapis.com/youtube/v3/";
 
 async function getResourse(id) {
@@ -25,7 +26,7 @@ export async function getApiVideo(id) {
   return body
 }
 // -> не подключенно
-export async function getApiNextPrevVideo(token,currentSearch) {
+export async function getApiselectlistVideo(token,currentSearch) {
   let body = await getResourse(`search?pageToken=${token}&part=snippet&maxResults=6&q=${currentSearch}&type=video&key=`)
   return body
 }
