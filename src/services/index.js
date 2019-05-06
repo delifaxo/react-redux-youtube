@@ -31,8 +31,8 @@ export async function getApiselectlistVideo(token,currentSearch) {
   return body
 }
 // -> не подключенно
-export async function getApiCommentsNext(token,id) {
-  let body = await getResourse(`commentThreads?pageToken=${token}&part=id%2Csnippet&videoId=${id}&key=`)
+export async function getApiCommentsNext(id) {
+  let body = await getResourse(`commentThreads?part=id%2Csnippet&videoId=${id}&key=`)
   return body
 }
 export async function getApiStatistics(id) {

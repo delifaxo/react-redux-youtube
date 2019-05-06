@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { getVideo } from './actions/video';
-import { getComments } from './actions/comments'
+import { getComments, loadComments } from './actions/comments'
 import RenderPlayer from './components/RenderPlayer'
 import RenderComments from './components/RenderComments'
 import RenderListVideo from './components/RenderListVideo'
@@ -11,6 +11,7 @@ import { getApiComments, getApiListVideo, getApiVideo, getApiStatistics, getApis
 import { getCurrentVideo } from './actions/currentVideo'
 import { getStatistics } from './actions/statistics'
 import { currentRequestSearch } from './actions/currentRequestSearch'
+import { getApiCommentsNext } from './services/index'
 class App extends Component {
 
   searchVideo = async (e) => {
@@ -55,6 +56,12 @@ class App extends Component {
     }
   }
 
+  loadingComments = async () => {
+
+    let body = await getApiCommentsNext(this.props.testStore.currentVideo[0].id);
+    this.props.loadComments(body);//action
+  }
+
   render() {
     console.log('STORE', this.props.testStore)
     return (
@@ -67,7 +74,9 @@ class App extends Component {
               <div className="video col-lg-8">
                 <RenderPlayer />
                 <div className="comments">
-                  <RenderComments />
+                  <RenderComments
+                    loadingComments={this.loadingComments}
+                  />
                 </div>
               </div>
               <div className="col-lg-4">
@@ -93,7 +102,8 @@ const mapDispatchToProps = {
   getComments,
   getCurrentVideo,
   getStatistics,
-  currentRequestSearch
+  currentRequestSearch,
+  loadComments
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
