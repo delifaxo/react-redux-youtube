@@ -21,29 +21,19 @@ class RenderPlayer extends Component {
             )
         }
         else if (this.props.testStore.comments[0].items) {
-            return (
-                <div>
-                    {this.props.testStore.comments.map((item, i) => {
+          
                         return (
-                            this.props.testStore.comments[i].items.map((items) =>
-
+                            <div>
+                            {this.props.testStore.comments[0].items.map((items) =>
                                 <div key={items.snippet.topLevelComment.etag}
                                     className="comments-item-list text-comments card bg-light mb-3">
                                     <div>Автор {items.snippet.topLevelComment.snippet.authorDisplayName}{` `}
                                         комментарий {items.snippet.topLevelComment.snippet.textOriginal}
                                     </div></div>
-                            )
+                            )}
+                        </div>
                         )
-                    }
-                    )}
-                    <div className="comments-item-list text-comments card bg-light mb-3">
-                        <button className="btn" onClick={this.props.loadingComments}>Load more comments</button>
-                    </div>
-                </div>
-
-
-            );
-        }
+                            }
     }
 }
 
