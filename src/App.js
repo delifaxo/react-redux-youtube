@@ -20,7 +20,7 @@ class App extends Component {
     this.props.currentRequestSearch(searchInput)
     let body = await getApiListVideo(searchInput);
     this.props.getVideo(body);//action
-    this.totalVideo(body.items[0].id.videoId);
+    (body.items[0]) ? this.totalVideo(body.items[0].id.videoId) : alert('Видео не было найдено')
   }
 
   listVideo = async (e) => {
@@ -47,7 +47,7 @@ class App extends Component {
         this.props.getVideo(data);
       }
     }
-    
+
     else if ((e.target.getAttribute('name') === "nextPageToken") && e.target.getAttribute('name') !== undefined) {
       let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
         this.props.testStore.currentRequestSearch[0]);

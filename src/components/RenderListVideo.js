@@ -8,7 +8,10 @@ class RenderListVideo extends Component {
     if (!this.props.testStore.video[0]) {
       return []
     }
-    else {
+    else if (this.props.testStore.video[0].items.length === 0 ) {
+      return []
+    }
+    else if (this.props.testStore.video[0].items.length > 0 )  {
       return (
         <div>
           {this.props.testStore.video[0].items.map(({ id, snippet }) => {
@@ -29,11 +32,11 @@ class RenderListVideo extends Component {
           <div>
           </div>
           <div>
-            <button className="btn card bg-light btnleft" name="prevPageToken" onClick={this.props.selectlistVideo}>Prev video
-          </button>
-            <button className="btn card bg-light btnrigth" name= "nextPageToken" onClick={this.props.selectlistVideo}>Next video
-           </button>
-          </div> </div>
+            <button className="btn card bg-light btnleft" name="prevPageToken" onClick={this.props.selectlistVideo}>
+              Prev video</button>
+            <button className="btn card bg-light btnrigth" name="nextPageToken" onClick={this.props.selectlistVideo}>
+              Next video</button>
+          </div></div>
       )
     }
   }
