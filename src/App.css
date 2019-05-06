@@ -21,11 +21,12 @@
 }
 
 .video-side-img {
-  width: 35%;
-  max-width: 25%;
-  height: auto;
+  min-width: 25px;
+  width: 125px;
   float: left;
-  margin: 0px;
+  min-height: 40px;
+
+   margin: 0px;
   border-radius: 5px 5px 5px 5px;
 }
 
