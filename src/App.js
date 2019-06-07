@@ -43,20 +43,23 @@ class App extends Component {
 
   selectlistVideo = async (e) => {
     if (e.target.getAttribute('name') === "prevPageToken") {
+      if(this.props.testStore.video[0].prevPageToken !== undefined){
+      this.props.getLoadingVideo()
       let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
         this.props.testStore.currentRequestSearch[0]);
-      if (this.props.testStore.video[0].prevPageToken !== undefined) {
-        this.props.getLoadingVideo()
-        this.props.getVideo(data);
+          if (data.prevPageToken !== undefined || data.nextPageToken === "CAYQAA") {
+   
+              this.props.getVideo(data);
+          }
       }
     }
 
     else if ((e.target.getAttribute('name') === "nextPageToken") && e.target.getAttribute('name') !== undefined) {
+      this.props.getLoadingVideo()
       let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
         this.props.testStore.currentRequestSearch[0]);
-      if (this.props.testStore.video[0].nextPageToken !== undefined) {
-        this.props.getLoadingVideo()
-        this.props.getVideo(data);
+      if (data.nextPageToken !== undefined) {
+        this.props.getVideo(data)
       }
     }
   }
@@ -104,8 +107,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getVideo,
   getLoadingVideo,
+  getVideo,
   getComments,
   getCurrentVideo,
   getStatistics,

@@ -1,10 +1,10 @@
 export default function video(state = [false], action) {
     switch (action.type) {
         case 'ADD_VIDEO':
-        return [action.payload]
+            return [action.payload]
         case 'LOADING':
-        return [action.payload]
+            return [action.payload]
         default:
-        return state
+            return state
     }
 }
