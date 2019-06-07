@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { getVideo } from './actions/video';
+import { getLoadingVideo } from './actions/video';
 import { getComments, loadComments } from './actions/comments'
 import RenderPlayer from './components/RenderPlayer'
 import RenderComments from './components/RenderComments'
@@ -16,6 +17,7 @@ class App extends Component {
 
   searchVideo = async (e) => {
     e.preventDefault();
+    this.props.getLoadingVideo()
     let searchInput = e.target.searchInput.value
     this.props.currentRequestSearch(searchInput)
     let body = await getApiListVideo(searchInput);
@@ -44,6 +46,7 @@ class App extends Component {
       let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
         this.props.testStore.currentRequestSearch[0]);
       if (this.props.testStore.video[0].prevPageToken !== undefined) {
+        this.props.getLoadingVideo()
         this.props.getVideo(data);
       }
     }
@@ -52,6 +55,7 @@ class App extends Component {
       let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
         this.props.testStore.currentRequestSearch[0]);
       if (this.props.testStore.video[0].nextPageToken !== undefined) {
+        this.props.getLoadingVideo()
         this.props.getVideo(data);
       }
     }
@@ -101,6 +105,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getVideo,
+  getLoadingVideo,
   getComments,
   getCurrentVideo,
   getStatistics,

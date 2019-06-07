@@ -75,7 +75,11 @@
   /* Отступы вокруг картинки */
 }
 
-
+.preloader-list-video {
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+}
 
 
 

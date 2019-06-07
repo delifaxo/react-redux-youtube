@@ -16,6 +16,7 @@ function RPlayer(currentVideo) {
                     </div>
                     <iframe className="ytplayer" allowFullScreen="allowfullScreen"
                         mozallowfullscreen="mozallowfullscreen"
+                        title="video"
                         msallowfullscreen="msallowfullscreen"
                         oallowfullscreen="oallowfullscreen"
                         webkitallowfullscreen="webkitallowfullscreen"

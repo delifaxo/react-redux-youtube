@@ -6,3 +6,11 @@ export function getVideo(body) {
         payload: body
     }
 }
+
+export  function getLoadingVideo() {
+    return {
+        type: "LOADING",
+        payload: true
+    }
+}
+

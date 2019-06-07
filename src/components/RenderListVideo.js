@@ -5,10 +5,15 @@ import { connect } from 'react-redux';
 class RenderListVideo extends Component {
 
   render() {
-    if (!this.props.testStore.video[0]) {
+    console.log('беда')
+    console.log(this.props.testStore.video[0])
+    if (this.props.testStore.video[0] === true) {
+      return <div className = "preloader-list-video">загрузка...</div>
+    }
+    else if (this.props.testStore.video[0] === false ) {
       return []
     }
-    else if (this.props.testStore.video[0].items.length === 0 ) {
+    else if (this.props.testStore.video[0].items.length === 0  ) {
       return []
     }
     else if (this.props.testStore.video[0].items.length > 0 )  {
