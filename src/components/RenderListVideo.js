@@ -12,6 +12,9 @@ class RenderListVideo extends Component {
     else if (this.props.testStore.video[0] === false ) {
       return []
     }
+    else if (this.props.testStore.video[0].error) {
+      return <div>error</div>
+    }
     else if (this.props.testStore.video[0].items.length === 0  ) {
       return []
     }

@@ -13,6 +13,7 @@ import { getCurrentVideo } from './actions/currentVideo'
 import { getStatistics } from './actions/statistics'
 import { currentRequestSearch } from './actions/currentRequestSearch'
 import { getApiCommentsNext } from './services/index'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 class App extends Component {
 
   searchVideo = async (e) => {
@@ -22,7 +23,9 @@ class App extends Component {
     this.props.currentRequestSearch(searchInput)
     let body = await getApiListVideo(searchInput);
     this.props.getVideo(body);//action
-    (body.items[0]) ? this.totalVideo(body.items[0].id.videoId) : alert('Видео не было найдено')
+    if (!body.error) {
+      (body.items[0]) ? this.totalVideo(body.items[0].id.videoId) : alert('Видео не было найдено')
+    }
   }
 
   listVideo = async (e) => {
@@ -43,14 +46,13 @@ class App extends Component {
 
   selectlistVideo = async (e) => {
     if (e.target.getAttribute('name') === "prevPageToken") {
-      if(this.props.testStore.video[0].prevPageToken !== undefined){
-      this.props.getLoadingVideo()
-      let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
-        this.props.testStore.currentRequestSearch[0]);
-          if (data.prevPageToken !== undefined || data.nextPageToken === "CAYQAA") {
-   
-              this.props.getVideo(data);
-          }
+      if (this.props.testStore.video[0].prevPageToken !== undefined) {
+        this.props.getLoadingVideo()
+        let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
+          this.props.testStore.currentRequestSearch[0]);
+        if (data.prevPageToken !== undefined || data.nextPageToken === "CAYQAA") {
+          this.props.getVideo(data);
+        }
       }
     }
 
@@ -84,8 +86,7 @@ class App extends Component {
                 <RenderPlayer />
                 <div className="comments">
                   <RenderComments
-                    loadingComments={this.loadingComments}
-                  />
+                    loadingComments={this.loadingComments} />
                 </div>
               </div>
               <div className="col-lg-4">
