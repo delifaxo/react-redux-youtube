@@ -50,15 +50,6 @@ class RenderListVideo extends Component {
               Prev video</button>
             <button className="btn card bg-light btnrigth" name="nextPageToken" onClick={this.props.selectlistVideo}>
               Next video</button>
-              <Pagination
-    onPageChange={this.props.selectlistVideo}
-    defaultActivePage={1}
-    ellipsisItem={null}
-    firstItem={null}
-    lastItem={null}
-    siblingRange={1}
-    totalPages={this.funcs()}
-  />
           </div></div>
       )
     }
