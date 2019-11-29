@@ -34,9 +34,7 @@ function RPlayer(currentVideo) {
 }
 
 function Rstatistics(body) {
-    console.log(`body`)
 
-    console.log(body)
     if (!body.body.statistics[0]) {
         return []
     }
@@ -54,7 +52,6 @@ function Rstatistics(body) {
 }
 class RenderPlayer extends Component {
     render() {
-        console.log("STORE-2", this.props.testStore)
         return (
             <div>
                 <RPlayer currentVideo={this.props.testStore} />

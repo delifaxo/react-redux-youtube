@@ -15,6 +15,9 @@ import { currentRequestSearch } from './actions/currentRequestSearch'
 import { getApiCommentsNext } from './services/index'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 class App extends Component {
+  state={
+    currentPage: 1,
+  }
 
   searchVideo = async (e) => {
     e.preventDefault();
@@ -44,26 +47,45 @@ class App extends Component {
     this.props.getComments(a3);//action
   }
 
-  selectlistVideo = async (e) => {
-    if (e.target.getAttribute('name') === "prevPageToken") {
-      if (this.props.testStore.video[0].prevPageToken !== undefined) {
-        this.props.getLoadingVideo()
-        let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
+  selectlistVideo = async (e, { activePage }) => {
+    console.log(activePage)
+    this.setState({ currentPage: activePage }, async function() {
+    if (this.state.currentPage > activePage) {
+      this.props.getLoadingVideo()
+          let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
+            this.props.testStore.currentRequestSearch[0]);
+          if (data.prevPageToken !== undefined || data.nextPageToken === "CAYQAA") {
+            this.props.getVideo(data);
+          }    }
+    else {
+      this.props.getLoadingVideo()
+        let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
           this.props.testStore.currentRequestSearch[0]);
-        if (data.prevPageToken !== undefined || data.nextPageToken === "CAYQAA") {
-          this.props.getVideo(data);
+        if (data.nextPageToken !== undefined) {
+          this.props.getVideo(data)
         }
       }
-    }
+      })
+    
+    // if (e.target.getAttribute('name') === "prevPageToken") {
+    //   if (this.props.testStore.video[0].prevPageToken !== undefined) {
+    //     this.props.getLoadingVideo()
+    //     let data = await getApiselectlistVideo(this.props.testStore.video[0].prevPageToken,
+    //       this.props.testStore.currentRequestSearch[0]);
+    //     if (data.prevPageToken !== undefined || data.nextPageToken === "CAYQAA") {
+    //       this.props.getVideo(data);
+    //     }
+    //   }
+    // }
 
-    else if ((e.target.getAttribute('name') === "nextPageToken") && e.target.getAttribute('name') !== undefined) {
-      this.props.getLoadingVideo()
-      let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
-        this.props.testStore.currentRequestSearch[0]);
-      if (data.nextPageToken !== undefined) {
-        this.props.getVideo(data)
-      }
-    }
+    // else if ((e.target.getAttribute('name') === "nextPageToken") && e.target.getAttribute('name') !== undefined) {
+    //   this.props.getLoadingVideo()
+    //   let data = await getApiselectlistVideo(this.props.testStore.video[0].nextPageToken,
+    //     this.props.testStore.currentRequestSearch[0]);
+    //   if (data.nextPageToken !== undefined) {
+    //     this.props.getVideo(data)
+    //   }
+    // }
   }
 
   loadingComments = async () => {
@@ -74,7 +96,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('STORE', this.props.testStore)
     return (
       <div className="App">
         <div className="top">

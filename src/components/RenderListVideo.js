@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Pagination } from 'semantic-ui-react'
 
 //<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 class RenderListVideo extends Component {
+
+  funcs = () => {
+  //this.props.testStore.video[0].pageInfo.totalResults/6
+  return Math.floor(this.props.testStore.video[0].pageInfo.totalResults/6)
+}
 
   render() {
 
@@ -19,6 +25,7 @@ class RenderListVideo extends Component {
       return []
     }
     else if (this.props.testStore.video[0].items.length > 0 )  {
+
       return (
         <div>
           {this.props.testStore.video[0].items.map(({ id, snippet }) => {
@@ -43,6 +50,15 @@ class RenderListVideo extends Component {
               Prev video</button>
             <button className="btn card bg-light btnrigth" name="nextPageToken" onClick={this.props.selectlistVideo}>
               Next video</button>
+              <Pagination
+    onPageChange={this.props.selectlistVideo}
+    defaultActivePage={1}
+    ellipsisItem={null}
+    firstItem={null}
+    lastItem={null}
+    siblingRange={1}
+    totalPages={this.funcs()}
+  />
           </div></div>
       )
     }
